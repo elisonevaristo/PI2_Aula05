@@ -5,9 +5,7 @@
  */
 package br.com.aula05;
 
-import javax.swing.DefaultListModel;
-import javax.swing.JOptionPane;
-import javax.swing.ListModel;
+import javax.swing.JList;
 
 /**
  *
@@ -144,27 +142,33 @@ public class Exercicio08 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoIncluirActionPerformed
-        
+        incluirFilme(textoNome.getText(), textoNota.getText());
     }//GEN-LAST:event_botaoIncluirActionPerformed
 
-    private void IncluirFilme(String nomeNovoFilme, String notaNovoFilme){
+    private void incluirFilme(String nomeNovoFilme, String notaNovoFilme){
         
-        boolean jaIncluido = false;
+//        boolean jaIncluido = false;
+//        
+//        for (int i = 0; i < listaFilmes.getModel().getSize(); i++) {
+//            
+//            String filme = listaFilmes.getModel().getElementAt(i);
+//            String nomeFilme = filme.substring(0, filme.lastIndexOf("|"));
+//            
+//            if (nomeNovoFilme.trim().equalsIgnoreCase(nomeFilme)){
+//                JOptionPane.showMessageDialog(this, "Filme já incluído.");
+//                jaIncluido = true;
+//                break;
+//            }
+//        }
+//        
+//        if(jaIncluido)
+//            return;
         
-        for (int i = 0; i < listaFilmes.getModel().getSize(); i++) {
-            
-            String filme = listaFilmes.getModel().getElementAt(i);
-            String nomeFilme = filme.substring(0, filme.lastIndexOf("|"));
-            
-            if (nomeNovoFilme.trim().equalsIgnoreCase(nomeFilme)){
-                JOptionPane.showMessageDialog(this, "Filme já incluído.");
-                jaIncluido = true;
-                break;
-            }
-        }
-        
-        ListModel<String> model = listaFilmes.getModel();
-        ((DefaultListModel)model).addElement(String.format("%s | %s", nomeNovoFilme, notaNovoFilme));        
+        //String.format("%s | %s", nomeNovoFilme, notaNovoFilme)
+                      
+        String[] model = new String[] { String.format("%s | %s", nomeNovoFilme, notaNovoFilme) };
+               
+        listaFilmes = new JList<>(model);
     }
     
     private float obterNota(String nota){
@@ -194,7 +198,7 @@ public class Exercicio08 extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }

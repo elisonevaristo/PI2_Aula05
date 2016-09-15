@@ -5,7 +5,9 @@
  */
 package br.com.aula05;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,6 +20,7 @@ public class Exercicio08 extends javax.swing.JFrame {
      */
     public Exercicio08() {
         initComponents();
+        listaFilmes.setModel(new DefaultListModel());
     }
 
     /**
@@ -147,28 +150,31 @@ public class Exercicio08 extends javax.swing.JFrame {
 
     private void incluirFilme(String nomeNovoFilme, String notaNovoFilme){
         
-//        boolean jaIncluido = false;
-//        
-//        for (int i = 0; i < listaFilmes.getModel().getSize(); i++) {
-//            
-//            String filme = listaFilmes.getModel().getElementAt(i);
-//            String nomeFilme = filme.substring(0, filme.lastIndexOf("|"));
-//            
-//            if (nomeNovoFilme.trim().equalsIgnoreCase(nomeFilme)){
-//                JOptionPane.showMessageDialog(this, "Filme já incluído.");
-//                jaIncluido = true;
-//                break;
-//            }
-//        }
-//        
-//        if(jaIncluido)
-//            return;
+        boolean jaIncluido = false;
         
-        //String.format("%s | %s", nomeNovoFilme, notaNovoFilme)
-                      
-        String[] model = new String[] { String.format("%s | %s", nomeNovoFilme, notaNovoFilme) };
-               
-        listaFilmes = new JList<>(model);
+        for (int i = 0; i < listaFilmes.getModel().getSize(); i++) {
+            
+            String filme = listaFilmes.getModel().getElementAt(i);
+            String nomeFilme = filme.substring(0, filme.lastIndexOf("|"));
+                    
+            if (nomeNovoFilme.trim().equalsIgnoreCase(nomeFilme.trim())){
+                JOptionPane.showMessageDialog(this, "Filme já incluído.");
+                jaIncluido = true;
+                break;
+            }
+        }
+        
+        if(jaIncluido)
+            return;
+          
+        DefaultListModel model = (DefaultListModel)listaFilmes.getModel();
+        if (model == null)
+        {
+            model = new DefaultListModel();
+            listaFilmes.setModel(model);
+        }
+        
+        model.addElement(String.format("%s | %s", nomeNovoFilme, notaNovoFilme));
     }
     
     private float obterNota(String nota){

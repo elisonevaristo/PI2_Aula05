@@ -24,26 +24,29 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="panelInclusao" max="32767" attributes="0"/>
-                  <Component id="panelLista" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="panelInclusao" max="32767" attributes="0"/>
+                          <Component id="panelLista" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="229" max="-2" attributes="0"/>
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace pref="89" max="32767" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="332" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="panelInclusao" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="panelLista" max="32767" attributes="0"/>
@@ -133,8 +136,9 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Component id="jScrollPane1" max="32767" attributes="0"/>
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <Group type="102" attributes="0">
+                  <Component id="botaoRecomendar" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Component id="botaoLimpar" min="-2" pref="140" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -144,7 +148,10 @@
               <Group type="102" attributes="0">
                   <Component id="jScrollPane1" min="-2" pref="203" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="botaoLimpar" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="botaoLimpar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="botaoRecomendar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
           </Group>
         </DimensionLayout>
@@ -173,6 +180,17 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="LIMPAR LISTA"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoLimparActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="botaoRecomendar">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="RECOMENDA&#xc7;&#xc3;O DE FILME"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoRecomendarActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

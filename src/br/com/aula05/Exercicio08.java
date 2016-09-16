@@ -5,8 +5,8 @@
  */
 package br.com.aula05;
 
+import java.util.Random;
 import javax.swing.DefaultListModel;
-import javax.swing.JList;
 import javax.swing.JOptionPane;
 
 /**
@@ -21,6 +21,7 @@ public class Exercicio08 extends javax.swing.JFrame {
     public Exercicio08() {
         initComponents();
         listaFilmes.setModel(new DefaultListModel());
+        random = new Random(1);
     }
 
     /**
@@ -42,6 +43,7 @@ public class Exercicio08 extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         listaFilmes = new javax.swing.JList<>();
         botaoLimpar = new javax.swing.JButton();
+        botaoRecomendar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -93,14 +95,27 @@ public class Exercicio08 extends javax.swing.JFrame {
         jScrollPane1.setViewportView(listaFilmes);
 
         botaoLimpar.setText("LIMPAR LISTA");
+        botaoLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoLimparActionPerformed(evt);
+            }
+        });
+
+        botaoRecomendar.setText("RECOMENDAÇÃO DE FILME");
+        botaoRecomendar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoRecomendarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelListaLayout = new javax.swing.GroupLayout(panelLista);
         panelLista.setLayout(panelListaLayout);
         panelListaLayout.setHorizontalGroup(
             panelListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelListaLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(panelListaLayout.createSequentialGroup()
+                .addComponent(botaoRecomendar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(botaoLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         panelListaLayout.setVerticalGroup(
@@ -108,7 +123,9 @@ public class Exercicio08 extends javax.swing.JFrame {
             .addGroup(panelListaLayout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(botaoLimpar))
+                .addGroup(panelListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botaoLimpar)
+                    .addComponent(botaoRecomendar)))
         );
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -119,22 +136,23 @@ public class Exercicio08 extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(61, 61, 61)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(panelInclusao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panelLista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(61, 61, 61)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(panelInclusao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(panelLista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(229, 229, 229)
+                        .addComponent(jLabel1)))
                 .addContainerGap(89, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(332, 332, 332))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
+                .addGap(57, 57, 57)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(panelInclusao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelLista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -146,9 +164,25 @@ public class Exercicio08 extends javax.swing.JFrame {
 
     private void botaoIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoIncluirActionPerformed
         incluirFilme(textoNome.getText(), textoNota.getText());
+        textoNome.setText("");
+        textoNota.setText("");
     }//GEN-LAST:event_botaoIncluirActionPerformed
 
+    private void botaoRecomendarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoRecomendarActionPerformed
+        recomendarFilmeAleatorio();
+    }//GEN-LAST:event_botaoRecomendarActionPerformed
+
+    private void botaoLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoLimparActionPerformed
+        listaFilmes.setModel(new DefaultListModel());
+    }//GEN-LAST:event_botaoLimparActionPerformed
+
     private void incluirFilme(String nomeNovoFilme, String notaNovoFilme){
+        
+        if (!validarNota(notaNovoFilme))
+        {
+            JOptionPane.showMessageDialog(this, "A nota deve ser um valor númérico.");
+            return;
+        }
         
         boolean jaIncluido = false;
         
@@ -177,10 +211,6 @@ public class Exercicio08 extends javax.swing.JFrame {
         model.addElement(String.format("%s | %s", nomeNovoFilme, notaNovoFilme));
     }
     
-    private float obterNota(String nota){
-        return Float.parseFloat(nota);
-    }
-    
     private boolean validarNota(String nota){
         try
         {
@@ -191,6 +221,17 @@ public class Exercicio08 extends javax.swing.JFrame {
         {
             return false;
         }
+    }
+    
+    private void recomendarFilmeAleatorio(){        
+        JOptionPane.showMessageDialog(this, 
+                String.format("Sugestão de filme: %s", 
+                        listaFilmes
+                                .getModel()
+                                .getElementAt(random
+                                        .nextInt(listaFilmes
+                                                .getModel()
+                                                .getSize()))));
     }
     
     /**
@@ -228,9 +269,11 @@ public class Exercicio08 extends javax.swing.JFrame {
         });
     }
 
+    private Random random;    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoIncluir;
     private javax.swing.JButton botaoLimpar;
+    private javax.swing.JButton botaoRecomendar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

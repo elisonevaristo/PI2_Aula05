@@ -5,18 +5,94 @@
  */
 package br.com.aula05;
 
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Roger
  */
 public class Exercicio11 extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form Exercicio11
      */
     public Exercicio11() {
         initComponents();
+        setEvents();
     }
+    
+    private void setEvents(){
+        jButton1.addActionListener(alEventoNumero);        
+        jButton2.addActionListener(alEventoNumero);
+        jButton3.addActionListener(alEventoNumero);
+        jButton4.addActionListener(alEventoNumero);
+        jButton5.addActionListener(alEventoNumero);
+        jButton6.addActionListener(alEventoNumero);
+        jButton7.addActionListener(alEventoNumero);
+        jButton8.addActionListener(alEventoNumero);
+        jButton9.addActionListener(alEventoNumero);
+        jButton10.addActionListener(alEventoNumero);
+        jButton11.addActionListener(alEventoNumero);
+        jButton12.addActionListener(alEventoNumero);
+        jButton13.addActionListener(alEventoNumero);
+        jButton14.addActionListener(alEventoNumero);
+        jButton15.addActionListener(alEventoNumero);
+        jButton16.addActionListener(alEventoNumero);
+        jButton17.addActionListener(alEventoNumero);
+        jButton18.addActionListener(alEventoNumero);
+        jButton19.addActionListener(alEventoNumero);
+        jButton20.addActionListener(alEventoNumero);
+        jButton21.addActionListener(alEventoNumero);
+        jButton22.addActionListener(alEventoNumero);
+        jButton23.addActionListener(alEventoNumero);
+        jButton24.addActionListener(alEventoNumero);
+        jButton25.addActionListener(alEventoNumero);
+        
+        jButton1.setName("1");        
+        jButton2.setName("2");
+        jButton3.setName("3");
+        jButton4.setName("4");
+        jButton5.setName("5");
+        jButton6.setName("6");
+        jButton7.setName("7");
+        jButton8.setName("8");
+        jButton9.setName("9");
+        jButton10.setName("10");
+        jButton11.setName("11");
+        jButton12.setName("12");
+        jButton13.setName("13");
+        jButton14.setName("14");
+        jButton15.setName("15");
+        jButton16.setName("16");
+        jButton17.setName("17");
+        jButton18.setName("18");
+        jButton19.setName("19");
+        jButton20.setName("20");
+        jButton21.setName("21");
+        jButton22.setName("22");
+        jButton23.setName("23");
+        jButton24.setName("24");
+        jButton25.setName("25");
+    }
+    
+    ActionListener alEventoNumero = new ActionListener(){    
+        public void actionPerformed(java.awt.event.ActionEvent evt) {       
+            
+            JButton botao = ((JButton)evt.getSource());            
+            int numero = Integer.parseInt(botao.getName());            
+            
+            if (numero % 3 == 0 || numero % 7 == 0)
+            {
+                botao.setText("X");
+                JOptionPane.showMessageDialog(rootPane, "BOMBA!");
+                System.exit(0);
+            }                
+            else
+                botao.setText("O");                
+        }        
+    };
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -58,10 +134,13 @@ public class Exercicio11 extends javax.swing.JFrame {
 
         jLabel1.setText("CAMPO MINADO");
 
+        jButton1.setName("1"); // NOI18N
         jButton1.setPreferredSize(new java.awt.Dimension(40, 40));
 
+        jButton2.setName("2"); // NOI18N
         jButton2.setPreferredSize(new java.awt.Dimension(40, 40));
 
+        jButton3.setName("3"); // NOI18N
         jButton3.setPreferredSize(new java.awt.Dimension(40, 40));
 
         jButton4.setPreferredSize(new java.awt.Dimension(40, 40));
@@ -70,61 +149,42 @@ public class Exercicio11 extends javax.swing.JFrame {
 
         jButton6.setPreferredSize(new java.awt.Dimension(40, 40));
 
-        jButton7.setText("--");
         jButton7.setPreferredSize(new java.awt.Dimension(40, 40));
 
-        jButton8.setText("--");
         jButton8.setPreferredSize(new java.awt.Dimension(40, 40));
 
-        jButton9.setText("--");
         jButton9.setPreferredSize(new java.awt.Dimension(40, 40));
 
-        jButton10.setText("--");
         jButton10.setPreferredSize(new java.awt.Dimension(40, 40));
 
-        jButton11.setText("--");
         jButton11.setPreferredSize(new java.awt.Dimension(40, 40));
 
-        jButton12.setText("--");
         jButton12.setPreferredSize(new java.awt.Dimension(40, 40));
 
-        jButton13.setText("--");
         jButton13.setPreferredSize(new java.awt.Dimension(40, 40));
 
-        jButton14.setText("--");
         jButton14.setPreferredSize(new java.awt.Dimension(40, 40));
 
-        jButton15.setText("--");
         jButton15.setPreferredSize(new java.awt.Dimension(40, 40));
 
-        jButton16.setText("--");
         jButton16.setPreferredSize(new java.awt.Dimension(40, 40));
 
-        jButton17.setText("--");
         jButton17.setPreferredSize(new java.awt.Dimension(40, 40));
 
-        jButton18.setText("--");
         jButton18.setPreferredSize(new java.awt.Dimension(40, 40));
 
-        jButton19.setText("--");
         jButton19.setPreferredSize(new java.awt.Dimension(40, 40));
 
-        jButton20.setText("--");
         jButton20.setPreferredSize(new java.awt.Dimension(40, 40));
 
-        jButton21.setText("--");
         jButton21.setPreferredSize(new java.awt.Dimension(40, 40));
 
-        jButton22.setText("--");
         jButton22.setPreferredSize(new java.awt.Dimension(40, 40));
 
-        jButton23.setText("--");
         jButton23.setPreferredSize(new java.awt.Dimension(40, 40));
 
-        jButton24.setText("--");
         jButton24.setPreferredSize(new java.awt.Dimension(40, 40));
 
-        jButton25.setText("--");
         jButton25.setPreferredSize(new java.awt.Dimension(40, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

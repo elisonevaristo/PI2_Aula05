@@ -27,14 +27,39 @@ public class Usuario {
     private String email;
     private String telefone;
     private String celular;
-    
-    public Usuario(String nome, String idade, String sexo, String estadoCivil, String rg, String cpf) throws NumberFormatException {
-        this.nome = nome;
-        this.idade = Integer.parseInt(idade);
+            
+    public Usuario(String nome, String idade, String sexo, String estadoCivil, String rg, String cpf) throws NumberFormatException, Exception {
+        
+        if (nome.isEmpty())
+            throw new Exception("O nome do usuário é obrigatório.");
+        if (idade.isEmpty())
+            throw new Exception("A idade do usuário é obrigatória.");
+        if (sexo.isEmpty())
+            throw new Exception("O sexo do usuário é obrigatório.");
+        if (estadoCivil.isEmpty())
+            throw new Exception("O estado civil do usuário é obrigatório.");
+        if (rg.isEmpty())
+            throw new Exception("O RG do usuário é obrigatório.");
+        if (cpf.isEmpty())
+            throw new Exception("O cpf do usuário é obrigatório.");
+        
+        this.nome = nome;        
         this.sexo = sexo;
         this.estadoCivil = estadoCivil;
         this.rg = rg;
         this.cpf = cpf;
+        
+         try 
+         { 
+             this.idade = Integer.parseInt(idade); 
+             
+             if (this.idade < 0 || this.idade > 120)
+                 throw new Exception("A idade deve estar entre 0 e 120 anos.");
+         }
+         catch(NumberFormatException e)
+         {
+             throw new NumberFormatException("A idade deve ser numérica.");
+         }
     }
 
     /**
@@ -62,7 +87,14 @@ public class Usuario {
      * @param numero the numero to set
      */
     public void setNumero(String numero) throws NumberFormatException {
-        this.numero = Integer.parseInt(numero);
+        try
+        {
+            this.numero = Integer.parseInt(numero);
+        }
+        catch(NumberFormatException nfe)
+        {
+            throw new NumberFormatException("O número deve ter um valor numérico.");
+        }
     }
 
     /**

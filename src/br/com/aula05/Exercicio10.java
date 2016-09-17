@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
  *
  * @author roger
  */
-public class Exercicio10 extends javax.swing.JFrame {
+public class Exercicio10 extends javax.swing.JPanel {
 
     ArrayList<Usuario> usuarios = new ArrayList<>();
     

@@ -5,9 +5,12 @@
  */
 package br.com.aula05;
 
+import java.awt.Component;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.JRootPane;
 
 /**
  *
@@ -15,15 +18,19 @@ import javax.swing.JOptionPane;
  */
 public class Exercicio11 extends javax.swing.JFrame {
     
+    ArrayList<Integer> bombas = new ArrayList<>();
+    ArrayList<Integer> acertos = new ArrayList<>();
     /**
      * Creates new form Exercicio11
      */
     public Exercicio11() {
         initComponents();
-        setEvents();
+        initComponentsExtended();
     }
     
-    private void setEvents(){
+    private void initComponentsExtended(){
+        
+        // <editor-fold defaultstate="collapsed" desc="Adicionando eventos">                          
         jButton1.addActionListener(alEventoNumero);        
         jButton2.addActionListener(alEventoNumero);
         jButton3.addActionListener(alEventoNumero);
@@ -50,6 +57,9 @@ public class Exercicio11 extends javax.swing.JFrame {
         jButton24.addActionListener(alEventoNumero);
         jButton25.addActionListener(alEventoNumero);
         
+        //</editor-fold>        
+        //<editor-fold defaultstate="collapsed" desc="Identificando os botoes">
+        
         jButton1.setName("1");        
         jButton2.setName("2");
         jButton3.setName("3");
@@ -75,25 +85,43 @@ public class Exercicio11 extends javax.swing.JFrame {
         jButton23.setName("23");
         jButton24.setName("24");
         jButton25.setName("25");
+        
+        //</editor-fold>        
+        //<editor-fold defaultstate="collapsed" desc="Criando lista de bombas">
+        
+        for (int i = 1; i <= 25; i++)
+            if (i % 3 == 0 || i % 7 == 0)
+                bombas.add(i);
+        
+        //</editor-fold>
     }
     
     ActionListener alEventoNumero = new ActionListener(){    
+        @Override
         public void actionPerformed(java.awt.event.ActionEvent evt) {       
             
             JButton botao = ((JButton)evt.getSource());            
             int numero = Integer.parseInt(botao.getName());            
-            
-            if (numero % 3 == 0 || numero % 7 == 0)
+    
+            if (bombas.contains(numero))
             {
                 botao.setText("X");
                 JOptionPane.showMessageDialog(rootPane, "BOMBA!");
                 System.exit(0);
-            }                
+            }
             else
-                botao.setText("O");                
+            {
+                botao.setText("O"); 
+                acertos.add(numero);
+            }       
+                                   
+            if(acertos.size() + bombas.size() == 25){
+                JOptionPane.showMessageDialog(rootPane, "VOCÊ GANHOU!");
+                System.exit(0);
+            }
         }        
     };
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

@@ -25,8 +25,7 @@ public class Exercicio13 extends javax.swing.JFrame {
     public Exercicio13() {
         initComponents();
         listaEditoras.setModel(new DefaultListModel());
-        listaLivros.setModel(new DefaultListModel());
-        
+        listaLivros.setModel(new DefaultListModel());        
     }
 
     /**
@@ -232,8 +231,9 @@ public class Exercicio13 extends javax.swing.JFrame {
         {
             Editora editora = new Editora(txtNomeEditora.getText());
             editoras.add(editora);
-            atualizarEditoras();
+            atualizarComboEditoras();
             atualizarListaEditoras(editora.getNome());
+            txtNomeEditora.setText("");
         }
         catch(Exception ex)
         {
@@ -255,6 +255,12 @@ public class Exercicio13 extends javax.swing.JFrame {
             
             livros.add(livro);
             atualizarListaLivros(livro.getLivro());
+            
+            txtNomeLivro.setText("");
+            txtAutor.setText("");
+            comboCategoria.setSelectedIndex(0);
+            comboEditora.setSelectedIndex(0);
+            txtNumeroPaginas.setText("");
         }
         catch(Exception ex)
         {
@@ -262,9 +268,10 @@ public class Exercicio13 extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_botaoIncluirLivroActionPerformed
 
-    private void atualizarEditoras()
+    private void atualizarComboEditoras()
     {
         Vector itens = new Vector();
+        itens.add("[Selecione...]");
         
         for (Editora editora : editoras)
             itens.add(editora.getNome());

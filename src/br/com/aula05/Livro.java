@@ -58,7 +58,7 @@ public class Livro {
      * @param categoria the categoria to set
      */
     public void setCategoria(String categoria) throws Exception {
-        if (categoria == null || categoria.isEmpty())
+        if (categoria == null || categoria.isEmpty() || categoria.equals("[Selecione...]"))
             throw new Exception("É obrigatório informar a categoria do livro.");
         
         this.categoria = categoria;

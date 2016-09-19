@@ -8,6 +8,7 @@ package br.com.aula05;
 import java.util.ArrayList;
 import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -23,6 +24,9 @@ public class Exercicio13 extends javax.swing.JFrame {
      */
     public Exercicio13() {
         initComponents();
+        listaEditoras.setModel(new DefaultListModel());
+        listaLivros.setModel(new DefaultListModel());
+        
     }
 
     /**
@@ -226,8 +230,10 @@ public class Exercicio13 extends javax.swing.JFrame {
     private void botaoIncluirEditoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoIncluirEditoraActionPerformed
         try
         {
-            editoras.add(new Editora(txtNomeEditora.getText()));
+            Editora editora = new Editora(txtNomeEditora.getText());
+            editoras.add(editora);
             atualizarEditoras();
+            atualizarListaEditoras(editora.getNome());
         }
         catch(Exception ex)
         {
@@ -245,7 +251,10 @@ public class Exercicio13 extends javax.swing.JFrame {
                     _editora = editora;
             }            
             
-            livros.add(new Livro(_editora, txtNomeLivro.getText(), txtAutor.getText(), comboCategoria.getSelectedItem().toString(), txtNumeroPaginas.getText()));
+            Livro livro = new Livro(_editora, txtNomeLivro.getText(), txtAutor.getText(), comboCategoria.getSelectedItem().toString(), txtNumeroPaginas.getText());
+            
+            livros.add(livro);
+            atualizarListaLivros(livro.getLivro());
         }
         catch(Exception ex)
         {
@@ -261,6 +270,28 @@ public class Exercicio13 extends javax.swing.JFrame {
             itens.add(editora.getNome());
         
         comboEditora.setModel(new DefaultComboBoxModel(itens));
+    }
+    
+    private void atualizarListaEditoras(String editora){          
+        DefaultListModel model = (DefaultListModel)listaEditoras.getModel();
+        if (model == null)
+        {
+            model = new DefaultListModel();
+            listaEditoras.setModel(model);
+        }
+        
+        model.addElement(editora);
+    }
+    
+    private void atualizarListaLivros(String livro){          
+        DefaultListModel model = (DefaultListModel)listaLivros.getModel();
+        if (model == null)
+        {
+            model = new DefaultListModel();
+            listaLivros.setModel(model);
+        }
+        
+        model.addElement(livro);
     }
     
     /**
